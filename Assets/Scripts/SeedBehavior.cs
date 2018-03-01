@@ -7,6 +7,8 @@ public class SeedBehavior : MonoBehaviour {
     Rigidbody rb;
     new AudioSource audio;
 
+    public GameObject[] trees;
+
     public GameObject spawnParticle;
 
 	// Use this for initialization
@@ -24,7 +26,11 @@ public class SeedBehavior : MonoBehaviour {
         audio.Play();
 
         GameObject part = Instantiate(spawnParticle, transform.position, Quaternion.identity);
-        ParticleSystem.MainModule p = part.GetComponent<ParticleSystem>().main;
+        ParticleSystem.MainModule p = part.GetComponentInChildren<ParticleSystem>().main;
         p.startColor = Color.red;
+
+        GameObject treePrefab = trees[Random.Range(0, trees.Length)];
+
+        GameObject.Instantiate(treePrefab, transform.position, Quaternion.identity);
     }
 }
