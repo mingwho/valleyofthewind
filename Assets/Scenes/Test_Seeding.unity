@@ -189,7 +189,7 @@ Transform:
   m_Children:
   - {fileID: 493751104}
   m_Father: {fileID: 0}
-  m_RootOrder: 7
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &258440341
 GameObject:
@@ -432,6 +432,12 @@ Prefab:
       propertyPath: m_RootOrder
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 114744864359996886, guid: 5c33e682159c5604e834208ecab5fcae,
+        type: 2}
+      propertyPath: seed
+      value: 
+      objectReference: {fileID: 1706816264857994, guid: 4f80c1bf9ac3ce74c9e0dd4fd77dd159,
+        type: 2}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 5c33e682159c5604e834208ecab5fcae, type: 2}
   m_IsPrefabParent: 0
@@ -474,6 +480,12 @@ Prefab:
       propertyPath: m_RootOrder
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 114910014233447942, guid: 57e658cbc2cfbf04fbf0170fd1841c01,
+        type: 2}
+      propertyPath: seed
+      value: 
+      objectReference: {fileID: 1706816264857994, guid: 4f80c1bf9ac3ce74c9e0dd4fd77dd159,
+        type: 2}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 57e658cbc2cfbf04fbf0170fd1841c01, type: 2}
   m_IsPrefabParent: 0
@@ -505,7 +517,7 @@ Transform:
   - {fileID: 1732909056}
   - {fileID: 1231775}
   m_Father: {fileID: 0}
-  m_RootOrder: 10
+  m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1542219862
 GameObject:
@@ -524,7 +536,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!81 &1542219863
 AudioListener:
   m_ObjectHideFlags: 0
@@ -660,7 +672,8 @@ MonoBehaviour:
   scriptAliasRightController: {fileID: 1231774}
   autoManageVRSettings: 1
   autoLoadSetup: 1
-  setups: []
+  setups:
+  - {fileID: 177264596}
 --- !u!4 &2140856112
 Transform:
   m_ObjectHideFlags: 0
@@ -672,5 +685,5 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 6
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
