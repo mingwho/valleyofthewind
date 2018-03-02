@@ -1,3 +1,5 @@
-# valleyofthewind
+# Valley of the Wind
 
-This VR project is inspired by Nausicaa - Valley of the Wind. You will be be on a gliding journey to plant trees which create euphoric sounds across mountains and valley.
+This VR project is inspired by Nausicaa - Valley of the Wind. It takes you on a gliding journey across mountains and valleys to plant seeds and create euphoric soundscape.
+
+Contributor: Grace Huang, Mateo Molina, Alejandra Trejo and Ming Hu
