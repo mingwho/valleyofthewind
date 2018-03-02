@@ -7,8 +7,12 @@ public class SeedShooter : MonoBehaviour {
 
     public GameObject seed;
 
-    VRTK_ControllerEvents controller;
+    public VRTK_ControllerEvents controller;
     new AudioSource audio;
+
+    public VRTK_ControllerEvents Controller {
+        get { return controller; }
+    }
 
 	// Use this for initialization
 	void Start () {
