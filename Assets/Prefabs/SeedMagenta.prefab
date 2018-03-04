@@ -25,7 +25,7 @@ GameObject:
   - component: {fileID: 54236472873938714}
   - component: {fileID: 82244162038194880}
   - component: {fileID: 114527563635094610}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: SeedMagenta
   m_TagString: Untagged
   m_Icon: {fileID: 0}

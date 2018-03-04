@@ -10,9 +10,15 @@ public class PlanePilot : MonoBehaviour {
 	public SteamVR_TrackedObject rightHand;
 	public float initHeight = 0f;
 
+	static PlanePilot _instance;
+	public static PlanePilot Instance {
+		get { return _instance; }
+	}
+
 	// Use this for initialization
 	void Start () {
 		Debug.Log ("plane pilot script added to:" + gameObject.name);
+		_instance = this;
 	}
 	
 	// Update is called once per frame
@@ -61,11 +67,11 @@ public class PlanePilot : MonoBehaviour {
 		//Debug.Log ("the y value of axis is " + -Input.GetAxis ("Horizontal"));
 
 		// check how far we are from the terrain and if we collide to the terrain we will stop
-		float terrainHeightWhereWeAre = Terrain.activeTerrain.SampleHeight (transform.position);
-
-		if (terrainHeightWhereWeAre > transform.position.y) {
-			transform.position = new Vector3 (transform.position.x, terrainHeightWhereWeAre, transform.position.z);
-		}
+//		float terrainHeightWhereWeAre = Terrain.activeTerrain.SampleHeight (transform.position);
+//
+//		if (terrainHeightWhereWeAre > transform.position.y) {
+//			transform.position = new Vector3 (transform.position.x, terrainHeightWhereWeAre, transform.position.z);
+//		}
 
 	}
 }
