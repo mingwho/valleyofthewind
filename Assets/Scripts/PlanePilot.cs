@@ -27,27 +27,25 @@ public class PlanePilot : MonoBehaviour {
 		transform.position += transform.forward * Time.deltaTime * flyingSpeed;
 
 
-		// fly upward or downward based on the controllers relative position to head
+		// get left and right controller's y position
 		float leftDir = leftHand.transform.localPosition.y; //- head.position;
 		float rightDir = rightHand.transform.localPosition.y; //- head.position;
  
-
+		// fly upward or downward based on the controllers relative position to head
 		float dir = ((leftDir + rightDir)/2.0f) - initHeight;
+		// turn left or right based on the relative position of left and right hands
 		float turnControl = leftDir - rightDir;
-		print ("dir :" + dir);
-		print ("Turn :" + turnControl);
 
-
+//		print ("dir :" + dir);
+//		print ("Turn :" + turnControl);
 
 		//if (transform.rotation.x < 75.0f && transform.rotation.x > -75.0f) {
 			transform.Rotate (-dir, 0f, 0f, Space.Self);
 			transform.Rotate (0f, turnControl, 0.0f, Space.World);
 
-
 		// left and right controllers
 		var lDevice = SteamVR_Controller.Input ((int)leftHand.index);
 		var rDevice = SteamVR_Controller.Input ((int)rightHand.index);
-
 
 
 		// if player triggers the left trigger, we will turn left

@@ -217,7 +217,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   trees:
-  - {fileID: 100000, guid: 4937c5937d05abf4eb4ef2fc5a662c96, type: 3}
+  - {fileID: 100014, guid: 9fae9f7a7664c4c47a4fd4e9eedf6d6c, type: 3}
   spawnParticle: {fileID: 1789248845512410, guid: 5fa766b4d4ce71c4fbf94a8f5f7c3e13,
     type: 2}
   seedSprite: {fileID: 21300000, guid: a631b5bcaeedb6c448c9f7a5b65074ae, type: 3}
