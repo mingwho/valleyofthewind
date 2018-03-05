@@ -1,4 +1,4 @@
-﻿using System.Collections;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -19,6 +19,10 @@ public class PlanePilot : MonoBehaviour {
 	void Start () {
 		Debug.Log ("plane pilot script added to:" + gameObject.name);
 		_instance = this;
+
+		//get initial height of controllers at chest level - have players hold it there when game starts
+		initHeight = (leftHand.transform.localPosition.y + rightHand.transform.localPosition.y)/2;
+		Debug.Log ("initial height is " + initHeight);
 	}
 	
 	// Update is called once per frame
@@ -31,38 +35,25 @@ public class PlanePilot : MonoBehaviour {
 		float leftDir = leftHand.transform.localPosition.y; //- head.position;
 		float rightDir = rightHand.transform.localPosition.y; //- head.position;
  
-		// fly upward or downward based on the controllers relative position to head
+		// determine upward or downward movement based on the controllers relative position to initial height
 		float dir = ((leftDir + rightDir)/2.0f) - initHeight;
+
 		// turn left or right based on the relative position of left and right hands
 		float turnControl = leftDir - rightDir;
 
-//		print ("dir :" + dir);
-//		print ("Turn :" + turnControl);
 
 		//if (transform.rotation.x < 75.0f && transform.rotation.x > -75.0f) {
 			transform.Rotate (-dir, 0f, 0f, Space.Self);
 			transform.Rotate (0f, turnControl, 0.0f, Space.World);
 
-		// left and right controllers
-		var lDevice = SteamVR_Controller.Input ((int)leftHand.index);
-		var rDevice = SteamVR_Controller.Input ((int)rightHand.index);
+		// left and right controllers for old trigger turn controls - not needed but included for posterity
+//		var lDevice = SteamVR_Controller.Input ((int)leftHand.index);
+//		var rDevice = SteamVR_Controller.Input ((int)rightHand.index);
 
 
-		// if player triggers the left trigger, we will turn left
-		//if (lDevice.GetTouch (SteamVR_Controller.ButtonMask.Trigger)){
-		//	transform.Rotate (0f, 0.4f, 0.0f, Space.World);
-		//}
-
-		// if player triggers the right trigger, we will turn right
-		//if (rDevice.GetTouch (SteamVR_Controller.ButtonMask.Trigger)){
-		//	transform.Rotate (0f, -0.4f, 0.0f, Space.World);
-		//}
-//
-		// the parameter value is between -1 and 1
-		//transform.Rotate (-Input.GetAxis ("Vertical"), Input.GetAxis ("Horizontal"), 0.0f);
-		//Debug.Log ("the x value of axis is ");
-		//Debug.Log (-Input.GetAxis ("Vertical"));
-		//Debug.Log ("the y value of axis is " + -Input.GetAxis ("Horizontal"));
+		// Getting head rotation and position values - figuring out best way to orient player in glider right now - Grace
+		Debug.Log("head rotation: " + head.rotation.x);
+		Debug.Log("head position: " + head.position);
 
 		// check how far we are from the terrain and if we collide to the terrain we will stop
 //		float terrainHeightWhereWeAre = Terrain.activeTerrain.SampleHeight (transform.position);
