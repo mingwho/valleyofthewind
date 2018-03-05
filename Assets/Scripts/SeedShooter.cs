@@ -31,12 +31,16 @@ public class SeedShooter : MonoBehaviour {
         Debug.Log("yay");
 
         GameObject s = Instantiate(seed, transform.position, Quaternion.identity);
-
-		Vector3 heading = PlanePilot.Instance.transform.forward;
-		float speed = PlanePilot.Instance.flyingSpeed;
-
         Rigidbody rb = s.GetComponent<Rigidbody>();
-		rb.AddForce (heading * speed, ForceMode.VelocityChange);
+        PlanePilot pilot = PlanePilot.Instance;
+
+        if (pilot) {
+            Vector3 heading = PlanePilot.Instance.transform.forward;
+            float speed = PlanePilot.Instance.flyingSpeed;
+
+            rb.AddForce(heading * speed, ForceMode.VelocityChange);
+        }
+
         rb.AddForce(transform.forward * 10f, ForceMode.Impulse);
 
         audio.Play();
