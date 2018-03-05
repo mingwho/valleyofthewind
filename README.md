@@ -4,7 +4,8 @@ This VR project is inspired by Nausicaa - Valley of the Wind. It takes you on a 
 
 #### TODO:
 - Playtest
-- Figure out how to do with boundaries
+- Glider initialises player height and orientation on startup
+- Figure out how to deal with boundaries
 - Limit the glider at certain height so it won't crash into ground
 - Make the terrain feel low-poly: update material and texture, etc.
 - Add tilt to the glider so when we turn it feels better
