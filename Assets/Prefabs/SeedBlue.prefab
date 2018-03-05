@@ -129,4 +129,4 @@ MonoBehaviour:
     type: 2}
   spawnSound: {fileID: 8300000, guid: 2531b6fbb6dc0e1439c20c22d8f2a538, type: 3}
   seedSprite: {fileID: 21300000, guid: 9d360a3872fa5104f8d14c110f77eeb2, type: 3}
-  color: {r: 0.17517301, g: 0.23857518, b: 0.88235295, a: 0}
+  color: {r: 0.17517301, g: 0.23857518, b: 0.88235295, a: 1}

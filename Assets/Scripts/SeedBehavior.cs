@@ -27,6 +27,12 @@ public class SeedBehavior : MonoBehaviour {
 	}
 
     private void OnCollisionEnter(Collision collision) {
+        GameObject effects = GameObject.Find("[Effects]");
+        if (effects == null) {
+            effects = new GameObject();
+            effects.name = "[Effects]";
+        }
+
         GameObject part = Instantiate(spawnParticle, transform.position, Quaternion.identity);
         ParticleSystem.MainModule p = part.GetComponentInChildren<ParticleSystem>().main;
         p.startColor = color;
@@ -36,9 +42,18 @@ public class SeedBehavior : MonoBehaviour {
             audio.Play();
         }
 
+        part.transform.SetParent(effects.transform);
+
+        GameObject treeCont = GameObject.Find("[Trees]");
+        if (treeCont == null) {
+            treeCont = new GameObject();
+            treeCont.name = "[Trees]";
+        }
+
         GameObject treePrefab = trees[Random.Range(0, trees.Length)];
 
-        GameObject.Instantiate(treePrefab, transform.position + Vector3.down * 0.2f, Quaternion.identity);
+        GameObject tree = GameObject.Instantiate(treePrefab, transform.position + Vector3.down * 0.2f, Quaternion.identity);
+        tree.transform.SetParent(treeCont.transform);
 
         Destroy(gameObject);
     }
