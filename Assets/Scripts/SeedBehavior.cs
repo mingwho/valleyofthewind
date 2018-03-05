@@ -17,7 +17,7 @@ public class SeedBehavior : MonoBehaviour {
 	// Use this for initialization
 	void Start () {
         rb = GetComponent<Rigidbody>();
-        mr = GetComponent<MeshRenderer>();
+        mr = GetComponentInChildren<MeshRenderer>();
         ps = GetComponent<ParticleSystem>();
 
         mr.material.color = color;
