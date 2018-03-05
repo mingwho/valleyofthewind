@@ -18,5 +18,6 @@ This VR project is inspired by Nausicaa - Valley of the Wind. It takes you on a 
 - Debug planting seeds so they are planted at "correct" places (Seeds now despawn on impact and collide only with Seedable objects)
 - Style the glider model (new glider yay)
 - Debug particle system (bug was so so stupid lmao)
+- Seeds now have particle trail
 
 Contributor: Grace Huang, Mateo Molina, Alejandra Trejo and Ming Hu

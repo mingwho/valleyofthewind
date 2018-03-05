@@ -6,6 +6,7 @@ public class SeedBehavior : MonoBehaviour {
 
     Rigidbody rb;
     MeshRenderer mr;
+    ParticleSystem ps;
 
     public GameObject[] trees;
     public GameObject spawnParticle;
@@ -17,8 +18,11 @@ public class SeedBehavior : MonoBehaviour {
 	void Start () {
         rb = GetComponent<Rigidbody>();
         mr = GetComponent<MeshRenderer>();
+        ps = GetComponent<ParticleSystem>();
 
         mr.material.color = color;
+        ParticleSystem.MainModule m = ps.main;
+        m.startColor = color;
 	}
 	
 	// Update is called once per frame
