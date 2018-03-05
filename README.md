@@ -11,6 +11,7 @@ This VR project is inspired by Nausicaa - Valley of the Wind. It takes you on a 
 - Add tilt to the glider so when we turn it feels better
 - Acceleration and Deceleration when we go up and down
 - Tree_02 is not showing
+- Add particle system to glider so flight trail is visible
 
 #### DONE:
 - Combine all the work
