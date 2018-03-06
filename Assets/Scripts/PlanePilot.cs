@@ -14,6 +14,13 @@ public class PlanePilot : MonoBehaviour {
 	static PlanePilot _instance;
 	public static PlanePilot Instance {
 		get { return _instance; }
+
+		//		var smooth = 2.0;
+		//		var tiltAngle = 30.0;
+
+
+
+
 	}
 
 	// Use this for initialization
@@ -22,7 +29,7 @@ public class PlanePilot : MonoBehaviour {
 		_instance = this;
 
 	}
-	
+
 	// Update is called once per frame
 	void Update () {
 		// every frame we are moving forward
@@ -47,17 +54,32 @@ public class PlanePilot : MonoBehaviour {
 
 
 		//if (transform.rotation.x < 75.0f && transform.rotation.x > -75.0f) {
-			transform.Rotate (-dir, 0f, 0f, Space.Self);
-			transform.Rotate (0f, turnControl, 0.0f, Space.World);
+		transform.Rotate (-dir, 0f, 0f, Space.Self);
+		transform.Rotate (0f, turnControl, 0.0f, Space.World);
 
-		// left and right controllers for old trigger turn controls - not needed but included for posterity
-//		var lDevice = SteamVR_Controller.Input ((int)leftHand.index);
-//		var rDevice = SteamVR_Controller.Input ((int)rightHand.index);
+		//Tilt of glider when turning
+		//	var tiltAroundZ = Input.GetAxis("Horizontal") * tiltAngle;
+		//	var target = Quaternion.Euler (0, 0, tiltAroundZ);
+		//	transform.rotation = Quaternion.Slerp(transform.rotation, target, Time.deltaTime * smooth);
+
+		// left and right controllers for old trigger turn controls - may use for speed settings later
+		var lDevice = SteamVR_Controller.Input ((int)leftHand.index);
+		if (lDevice.GetPressDown(SteamVR_Controller.ButtonMask.Touchpad)) {
+			initHeight = ((leftDir + rightDir) / 2.0f);
+		}
+		if (lDevice.GetPress(SteamVR_Controller.ButtonMask.Grip)) {
+			flyingSpeed = 0f;
+		} else if (lDevice.GetPress(SteamVR_Controller.ButtonMask.Trigger)) {
+			flyingSpeed = 50f;
+		}else {
+			flyingSpeed = 15f;
+		}
+		//		var rDevice = SteamVR_Controller.Input ((int)rightHand.index);
 
 
 		// Getting head rotation and position values - figuring out best way to orient player in glider right now - Grace
-		Debug.Log("head rotation: " + head.rotation.x);
-		Debug.Log("head position: " + head.position);
+		//		Debug.Log("head rotation: " + head.rotation.x);
+		//		Debug.Log("head position: " + head.position);
 
 		// check how far we are from the terrain and if we collide to the terrain we will stop
 		float terrainHeightWhereWeAre = Terrain.activeTerrain.SampleHeight (transform.position);
