@@ -24,8 +24,9 @@ public class PlanePilot : MonoBehaviour {
 	void Start () {
 		Debug.Log ("plane pilot script added to:" + gameObject.name);
 		_instance = this;
-
 	}
+
+
 
 	void Update () {
 		// every frame we are moving forward
@@ -35,6 +36,9 @@ public class PlanePilot : MonoBehaviour {
 		// get left and right controller's y position
 		float leftDir = leftHand.transform.localPosition.y; //- head.position;
 		float rightDir = rightHand.transform.localPosition.y; //- head.position;
+
+
+		//Initial calibration for controller height
 		if (checkInitHeight == 50) {
 			initHeight = (leftDir + rightDir) / 2;
 			checkInitHeight++;
@@ -47,19 +51,6 @@ public class PlanePilot : MonoBehaviour {
 
 		// turn left or right based on the relative position of left and right hands
 		float turnControl = leftDir - rightDir;
-		Debug.Log ("turn control: " + turnControl);
-
-
-		//attempt at tilt- partially successful
-		//float z = turnControl*5.0f; // might be negative, just test it
-		//float lerpZ = transform.Find("Cube (3)").rotation.z;
-		//	lerpZ = Mathf.Lerp(lerpZ, z, 2.0f);
-		//float tiltAngle = transform.Find("Cube (3)").rotation.z;
-		//if ((tiltAngle >= 30f) || (tiltAngle <= -30f)) {
-		//	transform.Find ("Cube (3)").Rotate (0f, 0f, 0f, Space.Self);
-		//} else {
-	//		transform.Find ("Cube (3)").Rotate (0f, 0f, lerpZ, Space.Self);
-		//}
 
 		//Movement through rotation
 		transform.Rotate (-dir, 0f, 0f, Space.Self);
@@ -67,10 +58,13 @@ public class PlanePilot : MonoBehaviour {
 
 
 		// Left Controller Button actions
+		//To recalibrate controller height
 		var lDevice = SteamVR_Controller.Input ((int)leftHand.index);
 		if (lDevice.GetPressDown(SteamVR_Controller.ButtonMask.Grip)) {
 			initHeight = ((leftDir + rightDir) / 2.0f);
 		}
+
+		//To change flying speed
 		if (lDevice.GetPress(SteamVR_Controller.ButtonMask.Trigger)) {
 			flyingSpeed = 0f;
 		} else if (lDevice.GetPress(SteamVR_Controller.ButtonMask.Touchpad)) {
@@ -78,12 +72,7 @@ public class PlanePilot : MonoBehaviour {
 		}else {
 			flyingSpeed = 15f;
 		}
-		//		var rDevice = SteamVR_Controller.Input ((int)rightHand.index);
 
-
-		// Getting head rotation and position values - figuring out best way to orient player in glider right now - Grace
-		//		Debug.Log("head rotation: " + head.rotation.x);
-		//		Debug.Log("head position: " + head.position);
 
 		// check how far we are from the terrain and if we collide to the terrain we will stop
 		float terrainHeightWhereWeAre = Terrain.activeTerrain.SampleHeight (transform.position);
@@ -94,14 +83,18 @@ public class PlanePilot : MonoBehaviour {
 
 
 
+//attempt at tilt- partially successful
+		float z = turnControl*5.0f; 
+		//Its in radians - this is the problem
+		float tiltAngle = transform.Find("Glider Model").rotation.z;
+		Debug.Log ("tilt angle: " + tiltAngle);
+		if ((tiltAngle >= 30f) || (tiltAngle <= -30f)) {
+			transform.Find ("Cube (3)").Rotate (0f, 0f, 0f, Space.Self);
+		} else {
+				transform.Find ("Cube (3)").Rotate (0f, 0f, z, Space.Self);
+		}
 
-//			Vector3 euler = transform.localEulerAngles;
-//		euler.z = Mathf.Lerp(euler.z, z, 2.0f * Time.deltaTime);
-
-
-
-
-
+	
 
 	}
 }
