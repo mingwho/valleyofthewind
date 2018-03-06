@@ -9,6 +9,7 @@ public class PlanePilot : MonoBehaviour {
 	public SteamVR_TrackedObject leftHand;
 	public SteamVR_TrackedObject rightHand;
 	public float initHeight = 0f;
+	private float checkInitHeight = 0f;
 
 	static PlanePilot _instance;
 	public static PlanePilot Instance {
@@ -20,9 +21,6 @@ public class PlanePilot : MonoBehaviour {
 		Debug.Log ("plane pilot script added to:" + gameObject.name);
 		_instance = this;
 
-		//get initial height of controllers at chest level - have players hold it there when game starts
-		initHeight = (leftHand.transform.localPosition.y + rightHand.transform.localPosition.y)/2;
-		Debug.Log ("initial height is " + initHeight);
 	}
 	
 	// Update is called once per frame
@@ -34,7 +32,13 @@ public class PlanePilot : MonoBehaviour {
 		// get left and right controller's y position
 		float leftDir = leftHand.transform.localPosition.y; //- head.position;
 		float rightDir = rightHand.transform.localPosition.y; //- head.position;
- 
+		if (checkInitHeight == 50) {
+			initHeight = (leftDir + rightDir) / 2;
+			checkInitHeight++;
+		} else if (checkInitHeight < 60) {
+			checkInitHeight++;
+		}
+
 		// determine upward or downward movement based on the controllers relative position to initial height
 		float dir = ((leftDir + rightDir)/2.0f) - initHeight;
 
@@ -56,11 +60,11 @@ public class PlanePilot : MonoBehaviour {
 		Debug.Log("head position: " + head.position);
 
 		// check how far we are from the terrain and if we collide to the terrain we will stop
-//		float terrainHeightWhereWeAre = Terrain.activeTerrain.SampleHeight (transform.position);
-//
-//		if (terrainHeightWhereWeAre > transform.position.y) {
-//			transform.position = new Vector3 (transform.position.x, terrainHeightWhereWeAre, transform.position.z);
-//		}
+		float terrainHeightWhereWeAre = Terrain.activeTerrain.SampleHeight (transform.position);
+
+		if (terrainHeightWhereWeAre > transform.position.y) {
+			transform.position = new Vector3 (transform.position.x, terrainHeightWhereWeAre, transform.position.z);
+		}
 
 	}
 }
