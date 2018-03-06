@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class PlanePilot : MonoBehaviour {
-	public float flyingSpeed = 40.0f;
+	public float flyingSpeed = 15.0f;
 
 	public Transform head;
 	public SteamVR_TrackedObject leftHand;
@@ -14,23 +14,20 @@ public class PlanePilot : MonoBehaviour {
 	static PlanePilot _instance;
 	public static PlanePilot Instance {
 		get { return _instance; }
-
-		//		var smooth = 2.0;
-		//		var tiltAngle = 30.0;
-
-
-
-
 	}
+		
 
-	// Use this for initialization
+
+
+
+
 	void Start () {
 		Debug.Log ("plane pilot script added to:" + gameObject.name);
 		_instance = this;
-
 	}
 
-	// Update is called once per frame
+
+
 	void Update () {
 		// every frame we are moving forward
 		transform.position += transform.forward * Time.deltaTime * flyingSpeed;
@@ -39,6 +36,9 @@ public class PlanePilot : MonoBehaviour {
 		// get left and right controller's y position
 		float leftDir = leftHand.transform.localPosition.y; //- head.position;
 		float rightDir = rightHand.transform.localPosition.y; //- head.position;
+
+
+		//Initial calibration for controller height
 		if (checkInitHeight == 50) {
 			initHeight = (leftDir + rightDir) / 2;
 			checkInitHeight++;
@@ -52,41 +52,49 @@ public class PlanePilot : MonoBehaviour {
 		// turn left or right based on the relative position of left and right hands
 		float turnControl = leftDir - rightDir;
 
-
-		//if (transform.rotation.x < 75.0f && transform.rotation.x > -75.0f) {
+		//Movement through rotation
 		transform.Rotate (-dir, 0f, 0f, Space.Self);
-		transform.Rotate (0f, turnControl, 0.0f, Space.World);
+		transform.Rotate (0f, turnControl, 0f, Space.World);
 
-		//Tilt of glider when turning
-		//	var tiltAroundZ = Input.GetAxis("Horizontal") * tiltAngle;
-		//	var target = Quaternion.Euler (0, 0, tiltAroundZ);
-		//	transform.rotation = Quaternion.Slerp(transform.rotation, target, Time.deltaTime * smooth);
 
-		// left and right controllers for old trigger turn controls - may use for speed settings later
+		// Left Controller Button actions
+		//To recalibrate controller height
 		var lDevice = SteamVR_Controller.Input ((int)leftHand.index);
-		if (lDevice.GetPressDown(SteamVR_Controller.ButtonMask.Touchpad)) {
+		if (lDevice.GetPressDown(SteamVR_Controller.ButtonMask.Grip)) {
 			initHeight = ((leftDir + rightDir) / 2.0f);
 		}
-		if (lDevice.GetPress(SteamVR_Controller.ButtonMask.Grip)) {
+
+		//To change flying speed
+		if (lDevice.GetPress(SteamVR_Controller.ButtonMask.Trigger)) {
 			flyingSpeed = 0f;
-		} else if (lDevice.GetPress(SteamVR_Controller.ButtonMask.Trigger)) {
+		} else if (lDevice.GetPress(SteamVR_Controller.ButtonMask.Touchpad)) {
 			flyingSpeed = 50f;
 		}else {
 			flyingSpeed = 15f;
 		}
-		//		var rDevice = SteamVR_Controller.Input ((int)rightHand.index);
 
-
-		// Getting head rotation and position values - figuring out best way to orient player in glider right now - Grace
-		//		Debug.Log("head rotation: " + head.rotation.x);
-		//		Debug.Log("head position: " + head.position);
 
 		// check how far we are from the terrain and if we collide to the terrain we will stop
 		float terrainHeightWhereWeAre = Terrain.activeTerrain.SampleHeight (transform.position);
 
 		if (terrainHeightWhereWeAre > transform.position.y) {
-			transform.position = new Vector3 (transform.position.x, terrainHeightWhereWeAre, transform.position.z);
+			transform.position = new Vector3 (transform.position.x, (terrainHeightWhereWeAre), transform.position.z);
 		}
+
+
+
+//attempt at tilt- partially successful
+		float z = turnControl*5.0f; 
+		//Its in radians - this is the problem
+		float tiltAngle = transform.Find("Glider Model").rotation.z;
+		Debug.Log ("tilt angle: " + tiltAngle);
+		if ((tiltAngle >= 30f) || (tiltAngle <= -30f)) {
+			transform.Find ("Cube (3)").Rotate (0f, 0f, 0f, Space.Self);
+		} else {
+				transform.Find ("Cube (3)").Rotate (0f, 0f, z, Space.Self);
+		}
+
+	
 
 	}
 }
