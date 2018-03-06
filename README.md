@@ -3,6 +3,10 @@
 This VR project is inspired by Nausicaa - Valley of the Wind. It takes you on a gliding journey across mountains and valleys to plant seeds and create euphoric soundscape.
 
 #### TODO:
+- Reimport tree_02
+- Tree Soundscape
+- Wind Sounds
+- UI or introduction/tutorial into world
 - Add tilt to the glider so when we turn it feels better
 - Figure out how to deal with boundaries
 - Make the terrain feel low-poly: update material and texture, etc.
