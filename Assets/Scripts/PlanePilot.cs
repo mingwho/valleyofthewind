@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class PlanePilot : MonoBehaviour {
-	public float flyingSpeed = 40.0f;
+	public float flyingSpeed = 15.0f;
 
 	public Transform head;
 	public SteamVR_TrackedObject leftHand;
@@ -14,23 +14,19 @@ public class PlanePilot : MonoBehaviour {
 	static PlanePilot _instance;
 	public static PlanePilot Instance {
 		get { return _instance; }
-
-		//		var smooth = 2.0;
-		//		var tiltAngle = 30.0;
-
-
-
-
 	}
+		
 
-	// Use this for initialization
+
+
+
+
 	void Start () {
 		Debug.Log ("plane pilot script added to:" + gameObject.name);
 		_instance = this;
 
 	}
 
-	// Update is called once per frame
 	void Update () {
 		// every frame we are moving forward
 		transform.position += transform.forward * Time.deltaTime * flyingSpeed;
@@ -51,25 +47,33 @@ public class PlanePilot : MonoBehaviour {
 
 		// turn left or right based on the relative position of left and right hands
 		float turnControl = leftDir - rightDir;
+		Debug.Log ("turn control: " + turnControl);
 
 
-		//if (transform.rotation.x < 75.0f && transform.rotation.x > -75.0f) {
+		//attempt at tilt- partially successful
+		//float z = turnControl*5.0f; // might be negative, just test it
+		//float lerpZ = transform.Find("Cube (3)").rotation.z;
+		//	lerpZ = Mathf.Lerp(lerpZ, z, 2.0f);
+		//float tiltAngle = transform.Find("Cube (3)").rotation.z;
+		//if ((tiltAngle >= 30f) || (tiltAngle <= -30f)) {
+		//	transform.Find ("Cube (3)").Rotate (0f, 0f, 0f, Space.Self);
+		//} else {
+	//		transform.Find ("Cube (3)").Rotate (0f, 0f, lerpZ, Space.Self);
+		//}
+
+		//Movement through rotation
 		transform.Rotate (-dir, 0f, 0f, Space.Self);
-		transform.Rotate (0f, turnControl, 0.0f, Space.World);
+		transform.Rotate (0f, turnControl, 0f, Space.World);
 
-		//Tilt of glider when turning
-		//	var tiltAroundZ = Input.GetAxis("Horizontal") * tiltAngle;
-		//	var target = Quaternion.Euler (0, 0, tiltAroundZ);
-		//	transform.rotation = Quaternion.Slerp(transform.rotation, target, Time.deltaTime * smooth);
 
-		// left and right controllers for old trigger turn controls - may use for speed settings later
+		// Left Controller Button actions
 		var lDevice = SteamVR_Controller.Input ((int)leftHand.index);
-		if (lDevice.GetPressDown(SteamVR_Controller.ButtonMask.Touchpad)) {
+		if (lDevice.GetPressDown(SteamVR_Controller.ButtonMask.Grip)) {
 			initHeight = ((leftDir + rightDir) / 2.0f);
 		}
-		if (lDevice.GetPress(SteamVR_Controller.ButtonMask.Grip)) {
+		if (lDevice.GetPress(SteamVR_Controller.ButtonMask.Trigger)) {
 			flyingSpeed = 0f;
-		} else if (lDevice.GetPress(SteamVR_Controller.ButtonMask.Trigger)) {
+		} else if (lDevice.GetPress(SteamVR_Controller.ButtonMask.Touchpad)) {
 			flyingSpeed = 50f;
 		}else {
 			flyingSpeed = 15f;
@@ -85,8 +89,19 @@ public class PlanePilot : MonoBehaviour {
 		float terrainHeightWhereWeAre = Terrain.activeTerrain.SampleHeight (transform.position);
 
 		if (terrainHeightWhereWeAre > transform.position.y) {
-			transform.position = new Vector3 (transform.position.x, terrainHeightWhereWeAre, transform.position.z);
+			transform.position = new Vector3 (transform.position.x, (terrainHeightWhereWeAre), transform.position.z);
 		}
+
+
+
+
+//			Vector3 euler = transform.localEulerAngles;
+//		euler.z = Mathf.Lerp(euler.z, z, 2.0f * Time.deltaTime);
+
+
+
+
+
 
 	}
 }
