@@ -52,7 +52,7 @@ public class SeedSwitcher : MonoBehaviour {
         }
 
         Debug.Log("YAy bound!");
-        controller.GripPressed += new ControllerInteractionEventHandler(OnGripPress);
+        controller.TouchpadPressed += new ControllerInteractionEventHandler(OnTouchpadPress);
 
         return true;
     }
@@ -68,7 +68,7 @@ public class SeedSwitcher : MonoBehaviour {
         }
     }
 
-    void OnGripPress(object sender, ControllerInteractionEventArgs e) {
+    void OnTouchpadPress(object sender, ControllerInteractionEventArgs e) {
         Debug.Log("Grip Press");
         SetSeed();
     }

@@ -17,7 +17,7 @@ public class SeedShooter : MonoBehaviour {
     // Use this for initialization
     void Start() {
         controller = GetComponent<VRTK_ControllerEvents>();
-        controller.TouchpadReleased += new ControllerInteractionEventHandler(OnTouchpadReleased);
+        controller.TriggerClicked += new ControllerInteractionEventHandler(OnTriggerClicked);
 
         audio = GetComponent<AudioSource>();
     }
@@ -27,7 +27,7 @@ public class SeedShooter : MonoBehaviour {
 
     }
 
-    void OnTouchpadReleased(object sender, ControllerInteractionEventArgs e) {
+    void OnTriggerClicked(object sender, ControllerInteractionEventArgs e) {
         Debug.Log("yay");
 
         GameObject s = Instantiate(seed, transform.position, Quaternion.identity);
