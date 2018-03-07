@@ -88,8 +88,9 @@ public class PlanePilot : MonoBehaviour {
 		float z = turnControl*5.0f; 
 		//Its in radians - this is the problem
 		float tiltAngle = transform.Find("Glider Model").rotation.z;
-		Debug.Log ("tilt angle: " + tiltAngle);
-		if ((tiltAngle >= 30f) || (tiltAngle <= -30f)) {
+		float tiltAngleInDegrees = Mathf.Rad2Deg (tiltAngle);
+		Debug.Log ("tilt angle: " + tiltAngleInDegrees);
+		if ((tiltAngleInDegrees >= 30f) || (tiltAngleInDegrees <= -30f)) {
 			transform.Find ("Cube (3)").Rotate (0f, 0f, 0f, Space.Self);
 		} else {
 				transform.Find ("Cube (3)").Rotate (0f, 0f, z, Space.Self);
