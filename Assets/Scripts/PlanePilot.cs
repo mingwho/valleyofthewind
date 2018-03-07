@@ -82,25 +82,26 @@ public class PlanePilot : MonoBehaviour
 		if (lDevice.GetPressDown (SteamVR_Controller.ButtonMask.Grip)) {
 			initHeight = ((leftDir + rightDir) / 2.0f);
 		}
-
+		Debug.Log ("startgame? " + startGame);
 		//To change flying speed
 		float targetSpeed =  flyingSpeed;
-		flyingSpeed = Mathf.Lerp (flyingSpeed, targetSpeed, 0.02f);
+
 		if (startGame == false) {
-			targetSpeed = 0;
+			flyingSpeed = 0;
 		} else if (lDevice.GetPress (SteamVR_Controller.ButtonMask.Touchpad)) {
 			targetSpeed = 0f;
 		} else if (lDevice.GetPress (SteamVR_Controller.ButtonMask.Trigger)) {
 			targetSpeed = 50f;
 		} else {
 			targetSpeed = 15f;
+			Debug.Log ("neutral flying now/GAME STARTED");
 		}
 
 		//to start game
-		lDevice.GetPressUp (SteamVR_Controller.ButtonMask.Trigger){
+		if (lDevice.GetPressUp (SteamVR_Controller.ButtonMask.Trigger)){
 			startGame = true;
 		}
-
+		flyingSpeed = Mathf.Lerp (flyingSpeed, targetSpeed, 0.02f);
 
 		//Raycast terrain for collisions
 		RaycastTerrain ();
