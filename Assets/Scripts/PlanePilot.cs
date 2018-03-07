@@ -16,14 +16,15 @@ public class PlanePilot : MonoBehaviour {
 		get { return _instance; }
 	}
 		
-
-
-
-
+	AudioSource windSource;
+	[Range(0, 1)]
+	public float maxVolume = 1f;
 
 	void Start () {
 		Debug.Log ("plane pilot script added to:" + gameObject.name);
 		_instance = this;
+
+		windSource = GetComponent<AudioSource> ();
 	}
 
 
@@ -94,7 +95,13 @@ public class PlanePilot : MonoBehaviour {
 				transform.Find ("Cube (3)").Rotate (0f, 0f, z, Space.Self);
 		}
 
-	
+		AdjustWindVolume ();
 
+	}
+
+	void AdjustWindVolume() {
+		float factor = flyingSpeed / 50f;
+		float targetVolume = Mathf.Lerp (0, maxVolume, factor);
+		windSource.volume = Mathf.Lerp (windSource.volume, targetVolume, 0.1f);
 	}
 }
