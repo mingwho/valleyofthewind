@@ -796,6 +796,7 @@ MonoBehaviour:
   rightHand: {fileID: 114313507526287114}
   initHeight: 1.3
   maxVolume: 1
+  tiltThreshold: 15
 --- !u!114 &114468616734289124
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -984,7 +985,7 @@ ParticleSystem:
     startLifetime:
       serializedVersion: 2
       minMaxState: 0
-      scalar: 10
+      scalar: 30
       minScalar: 5
       maxCurve:
         serializedVersion: 2
@@ -1442,7 +1443,7 @@ ParticleSystem:
     sphericalDirectionAmount: 0
     randomPositionAmount: 0
     radius:
-      value: 0.3
+      value: 0.6
       mode: 0
       spread: 0
       speed:
@@ -1623,14 +1624,14 @@ ParticleSystem:
     curve:
       serializedVersion: 2
       minMaxState: 1
-      scalar: 2
+      scalar: 4
       minScalar: 1
       maxCurve:
         serializedVersion: 2
         m_Curve:
         - serializedVersion: 2
           time: 0
-          value: 0.5
+          value: 0.25333405
           inSlope: 0
           outSlope: 0
           tangentMode: 0
