@@ -199,11 +199,11 @@ MonoBehaviour:
     m_VerticalOverflow: 0
     m_LineSpacing: 1
   m_Text: "WELCOME TO THE VALLEY\n\nHOW TO PLANT SEEDS\r\nShoot seeds - Pull the right
-    trigger. \nChange seeds - Press the right touchpad. \r\n\nHOW TO FLY\nGo up -
-    Lift both controllers. \r\nGo down - Lower both controllers. \r\nTurn left - Lift
-    the right controller. \r\nTurn right - Lift the left controller. \r \r\nSlow down
-    - Hold down the left  touchpad. \r\nSpeed up - Hold the left trigger. \r\n\rCalibrate
-    Controls - Squeeze left grip\n\nSQUEEZE THE LEFT GRIP TO BEGIN"
+    trigger. \nChange seeds - Press the right touchpad. \r\n\nHOW TO FLY\nGo Up/Down
+    - Lift/Lower both controllers\nTurn left - Lift the right controller. \r\nTurn
+    right - Lift the left controller. \r \r\nSlow down - Hold down the left  touchpad.
+    \r\nSpeed up - Hold the left trigger. \r\n\rCalibrate Controls - Squeeze left
+    grip\n\nSQUEEZE THE LEFT GRIP TO BEGIN"
 --- !u!222 &478155391
 CanvasRenderer:
   m_ObjectHideFlags: 0
