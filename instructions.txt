@@ -12,3 +12,5 @@ Calibrate controllers - left grip
 PLANTING SEEDS
 Change seed - Press the right controller touchpad. 
 Shoot seed - Pull the right controller trigger. 
+
+Squeeze left grip to close instructions and start flying
