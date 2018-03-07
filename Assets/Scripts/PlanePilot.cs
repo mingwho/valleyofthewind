@@ -18,7 +18,7 @@ public class PlanePilot : MonoBehaviour
 	}
 
 	[Header("Flight Settings")]
-	public float flyingSpeed = 15.0f;
+	public float flyingSpeed = 0.0f;
 	public float distanceToGround = 1f;
 	public LayerMask mask;
 
@@ -32,6 +32,12 @@ public class PlanePilot : MonoBehaviour
 	[Header("Tilt Settings")]
 	[Range(0, 30)]
 	public float maxTilt = 15f;
+	private bool startGame = false;
+
+
+	//For tutorial
+
+
 
 	void Start ()
 	{
@@ -79,16 +85,30 @@ public class PlanePilot : MonoBehaviour
 
 		//To change flying speed
 		float targetSpeed =  flyingSpeed;
-		if (lDevice.GetPress (SteamVR_Controller.ButtonMask.Trigger)) {
-			targetSpeed = 0f;
+		flyingSpeed = Mathf.Lerp (flyingSpeed, targetSpeed, 0.02f);
+		if (startGame == false) {
+			targetSpeed = 0;
 		} else if (lDevice.GetPress (SteamVR_Controller.ButtonMask.Touchpad)) {
+			targetSpeed = 0f;
+		} else if (lDevice.GetPress (SteamVR_Controller.ButtonMask.Trigger)) {
 			targetSpeed = 50f;
 		} else {
 			targetSpeed = 15f;
 		}
-		flyingSpeed = Mathf.Lerp (flyingSpeed, targetSpeed, 0.02f);
+
+		//to start game
+		lDevice.GetPressUp (SteamVR_Controller.ButtonMask.Trigger){
+			startGame = true;
+		}
+
+
+		//Raycast terrain for collisions
 		RaycastTerrain ();
+
+		//tilt glider on turn
 		TiltGlider (turnControl);
+
+		//Wind volume on speed change
 		AdjustWindVolume ();
 	}
 
