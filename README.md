@@ -8,7 +8,7 @@ This VR project is inspired by Nausicaa - Valley of the Wind. It takes you on a 
 - Wind Sounds
 - UI or introduction/tutorial into world
 - Add tilt to the glider so when we turn it feels better - In Progress - Grace
-- Figure out glider model - more V-shaped or with some indication of the front
+- Add new glider model to prefab - In Progress - Grace
 - World design/Figure out how to deal with boundaries
 - Make the terrain feel low-poly: update material and texture, etc.
 - Acceleration and Deceleration when we go up and down
@@ -26,5 +26,6 @@ This VR project is inspired by Nausicaa - Valley of the Wind. It takes you on a 
 - Seeds now have particle trail
 - Playtest
 - Glider initialises player height and orientation on startup
-- Limit the glider at certain height so it won't crash into ground - won't go through terrain, but 
+- Limit the glider at certain height so it won't crash into ground
+- Figure out glider model - more V-shaped or with some indication of the front
 Contributor: Grace Huang, Mateo Molina, Alejandra Trejo and Ming Hu
