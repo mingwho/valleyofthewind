@@ -4,11 +4,7 @@ This VR project is inspired by Nausicaa - Valley of the Wind. It takes you on a 
 
 #### TODO:
 
-- Tree Soundscape
-- UI or introduction/tutorial into world
-- Figure out how to deal with boundaries OR create floating island world -In Progress - Mateo
-- Playtest more
-
+ALL DONE :D!!!!
 
 #### DONE:
 - Combine all the work
@@ -28,5 +24,9 @@ This VR project is inspired by Nausicaa - Valley of the Wind. It takes you on a 
 - Make the terrain feel low-poly: update material and texture, etc. (who needs polys)
 - Reimport tree_02??
 - Add new glider model to prefab - In Progress - Grace
+- Tree Soundscape
+- UI or introduction/tutorial into world
+- Figure out how to deal with boundaries OR create floating island world -In Progress - Mateo
+- Playtest more
 
 Contributor: Grace Huang, Mateo Molina, Alejandra Trejo and Ming Hu
