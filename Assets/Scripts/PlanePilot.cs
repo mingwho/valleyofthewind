@@ -18,9 +18,14 @@ public class PlanePilot : MonoBehaviour
 		get { return _instance; }
 	}
 
-	AudioSource windSource;
+	[Header("Wind Settings")]
 	[Range (0, 1)]
 	public float maxVolume = 1f;
+	AudioSource windSource;
+
+	[Header("Tilt Settings")]
+	[Range(0, 30)]
+	public float tiltThreshold = 15f;
 
 	void Start ()
 	{
@@ -80,28 +85,68 @@ public class PlanePilot : MonoBehaviour
 
 
 		// check how far we are from the terrain and if we collide to the terrain we will stop
-		float terrainHeightWhereWeAre = Terrain.activeTerrain.SampleHeight (transform.position);
+//		float terrainHeightWhereWeAre = Terrain.activeTerrain.SampleHeight (transform.position);
+//
+//		if (terrainHeightWhereWeAre > transform.position.y) {
+//			transform.position = new Vector3 (transform.position.x, (terrainHeightWhereWeAre), transform.position.z);
+//		}
 
-		if (terrainHeightWhereWeAre > transform.position.y) {
-			transform.position = new Vector3 (transform.position.x, (terrainHeightWhereWeAre), transform.position.z);
-		}
 
 
-
-//attempt at tilt- partially successful
-		float z = turnControl * 5.0f; 
-		//Its in radians - this is the problem
-		float tiltAngle = transform.Find ("Glider Model").rotation.z;
-		float tiltAngleInDegrees = Mathf.Rad2Deg * tiltAngle;
-		Debug.Log ("tilt angle: " + tiltAngleInDegrees);
-		if ((tiltAngleInDegrees >= 30f) || (tiltAngleInDegrees <= -30f)) {
-			transform.Find ("Cube (3)").Rotate (0f, 0f, 0f, Space.Self);
-		} else {
-			transform.Find ("Cube (3)").Rotate (0f, 0f, z, Space.Self);
-		}
+		TiltGlider (turnControl);
 
 		AdjustWindVolume ();
 
+	}
+
+	float SignedAngle(float angle) {
+		return angle >= 180 ? angle - 360 : angle;
+	}
+
+	bool ShouldWeTilt(float currentAngle, float turnAmount) {
+		// Convert angle to range (-180, 180]
+		float angle = SignedAngle(currentAngle);
+		// Check if we are past our maximum tilt
+		if ((angle >= tiltThreshold) || (angle <= - tiltThreshold)) {
+			// Allow rotation only if we are trying to rotate back to the center
+			Debug.Log("Angle: " + angle + " :: Turn: " + turnAmount);
+			return Mathf.Sign (angle) == Mathf.Sign (turnAmount);
+		}
+
+		// Default to true
+		return true;
+	}
+
+	void TiltGlider(float turn) {
+		//attempt at tilt- partially successful
+
+		// flip sign such that +z increases our angle and -z decreases
+		float z = turn * 5.0f; 
+
+		Transform model = transform.Find("Glider Model");
+		if (!model) {
+			model = transform.Find ("Glider");
+		}
+
+		if (model) {
+			float tiltAngle = model.localRotation.eulerAngles.z;
+
+			if (ShouldWeTilt(tiltAngle, z)) {
+				transform.Find ("Cube (3)").Rotate (0f, 0f, -z, Space.Self);
+				model.Rotate (0f, 0f, -z, Space.Self);
+			} else {
+				//Debug.Log ("STOP!");
+			}
+
+//			if ((tiltAngle >= tiltThreshold) || (tiltAngle <= 360f -tiltThreshold)) {
+//				transform.Find ("Cube (3)").Rotate (0f, 0f, 0f, Space.Self);
+//			} else {
+//
+//				//Debug.Log ("tilt angle: Deg - " + tiltAngleInDegrees + " : Rad - " + tiltAngle);
+//			}
+		} else {
+			Debug.LogWarning ("Glider model not found!");
+		}
 	}
 
 	void AdjustWindVolume ()

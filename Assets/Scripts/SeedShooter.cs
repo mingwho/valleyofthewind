@@ -6,13 +6,15 @@ using VRTK;
 public class SeedShooter : MonoBehaviour {
 
     public GameObject seed;
+	public bool useInertia = false;
 
-    public VRTK_ControllerEvents controller;
+    VRTK_ControllerEvents controller;
     new AudioSource audio;
 
     public VRTK_ControllerEvents Controller {
         get { return controller; }
     }
+		
 
     // Use this for initialization
     void Start() {
@@ -34,17 +36,21 @@ public class SeedShooter : MonoBehaviour {
         Rigidbody rb = s.GetComponent<Rigidbody>();
         PlanePilot pilot = PlanePilot.Instance;
 
-        if (pilot) {
-            Vector3 heading = PlanePilot.Instance.transform.forward;
-            float speed = PlanePilot.Instance.flyingSpeed;
+		float force = 10f;
 
-            rb.AddForce(heading * speed, ForceMode.VelocityChange);
+		if (pilot && useInertia) {
+			Vector3 heading = PlanePilot.Instance.transform.forward;
+			float speed = PlanePilot.Instance.flyingSpeed;
 
-        }
+			rb.AddForce (heading * speed, ForceMode.VelocityChange);
+		} else {
+			force = 20f;
+		}
+
         Vector3 rForce = new Vector3(Random.Range(0f, 1f), Random.Range(0f, 1f), Random.Range(0f, 1f)) * 1f;
         rb.AddTorque(rForce, ForceMode.Impulse);
 
-        rb.AddForce(transform.forward * 10f, ForceMode.Impulse);
+        rb.AddForce(transform.forward * force, ForceMode.Impulse);
 
         audio.Play();
     }
