@@ -35,8 +35,6 @@ public class PlanePilot : MonoBehaviour
 	private bool startGame = false;
 
 
-	//For tutorial
-
 
 
 	void Start ()
@@ -72,9 +70,11 @@ public class PlanePilot : MonoBehaviour
 		// turn left or right based on the relative position of left and right hands
 		float turnControl = leftDir - rightDir;
 
-		//Movement through rotation
-		transform.Rotate (-dir, 0f, 0f, Space.Self);
-		transform.Rotate (0f, turnControl, 0f, Space.World);
+		//Turn Control
+		if (startGame == true) {
+			transform.Rotate (-dir, 0f, 0f, Space.Self);
+			transform.Rotate (0f, turnControl, 0f, Space.World);
+		}
 
 		// Left Controller Button actions
 		//To recalibrate controller height
@@ -98,8 +98,10 @@ public class PlanePilot : MonoBehaviour
 		}
 
 		//to start game
-		if (lDevice.GetPressUp (SteamVR_Controller.ButtonMask.Trigger)){
+		if (lDevice.GetPressUp (SteamVR_Controller.ButtonMask.Grip)){
 			startGame = true;
+			GameObject tutorial = transform.Find ("Instructions").gameObject;
+			tutorial.SetActive (false);
 		}
 		flyingSpeed = Mathf.Lerp (flyingSpeed, targetSpeed, 0.02f);
 
