@@ -2,6 +2,10 @@ USER TESTING
 
 USER # 1
 Profile: She has never used VR before. Unfamiliar with the project. 
+State of the project: Early stage of the project. The terrain was a Unity texture. Flying mechanism wasn’t working perfectly. 
+Tested: Flying controls and mechanism. 
+Conclusions: Flying mechanism made people dizzy so we decided to work more on making the flying work. Even though we weren’t testing how effective the glider was we decided to modify our model as the user didn’t understand she was on a glider. 
+
 
 COMMENTS
 
@@ -16,6 +20,9 @@ She thought the shadow of the glider was a bench so she was trying to get to the
 
 USER # 2
 Profile: Unfamiliar with the project. 
+State of the project: Mid stage of the project. The terrain was ours. Music wasn’t working at this point of the project. 
+Tested: Shooting seeds mechanism as well as the improved flying controls. 
+Conclusions: Flying mechanism was more intuitive but it still made people dizzy at certain parts. We decided to change the shooting of the seeds mechanisms as a result of this test. Now to change seeds you press on the touchpad and to shoot seeds you pull the right trigger. 
 
 COMMENTS
 
@@ -29,6 +36,9 @@ Finally, she thought that the purpose of the game was to explore the environment
 
 USER #3 
 Profile: Unfamiliar with both VR and the project. 
+State of the project: Same as with user #2. Mid stage of the project. The terrain was ours. Music wasn’t working at this point of the project. 
+Tested: Shooting seeds mechanism as well as the improved flying controls. 
+Conclusions: Flying mechanism isn’t intuitive to complete beginners. We confirmed that the shooting mechanism needed to be changed. 
 
 COMMENTS 
 
@@ -38,6 +48,8 @@ Since the music wasn’t working at the time she tested the experience this coul
 
 USER #4
 Profile: Unfamiliar with the project. 
+State of the project: Almost finished.  
+Tested: Just the overall feel. 
 
 COMMENTS 
 
