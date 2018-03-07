@@ -2,7 +2,8 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PlanePilot : MonoBehaviour {
+public class PlanePilot : MonoBehaviour
+{
 	public float flyingSpeed = 15.0f;
 
 	public Transform head;
@@ -12,15 +13,17 @@ public class PlanePilot : MonoBehaviour {
 	private float checkInitHeight = 0f;
 
 	static PlanePilot _instance;
+
 	public static PlanePilot Instance {
 		get { return _instance; }
 	}
-		
+
 	AudioSource windSource;
-	[Range(0, 1)]
+	[Range (0, 1)]
 	public float maxVolume = 1f;
 
-	void Start () {
+	void Start ()
+	{
 		Debug.Log ("plane pilot script added to:" + gameObject.name);
 		_instance = this;
 
@@ -29,7 +32,8 @@ public class PlanePilot : MonoBehaviour {
 
 
 
-	void Update () {
+	void Update ()
+	{
 		// every frame we are moving forward
 		transform.position += transform.forward * Time.deltaTime * flyingSpeed;
 
@@ -48,7 +52,7 @@ public class PlanePilot : MonoBehaviour {
 		}
 
 		// determine upward or downward movement based on the controllers relative position to initial height
-		float dir = ((leftDir + rightDir)/2.0f) - initHeight;
+		float dir = ((leftDir + rightDir) / 2.0f) - initHeight;
 
 		// turn left or right based on the relative position of left and right hands
 		float turnControl = leftDir - rightDir;
@@ -61,16 +65,16 @@ public class PlanePilot : MonoBehaviour {
 		// Left Controller Button actions
 		//To recalibrate controller height
 		var lDevice = SteamVR_Controller.Input ((int)leftHand.index);
-		if (lDevice.GetPressDown(SteamVR_Controller.ButtonMask.Grip)) {
+		if (lDevice.GetPressDown (SteamVR_Controller.ButtonMask.Grip)) {
 			initHeight = ((leftDir + rightDir) / 2.0f);
 		}
 
 		//To change flying speed
-		if (lDevice.GetPress(SteamVR_Controller.ButtonMask.Trigger)) {
+		if (lDevice.GetPress (SteamVR_Controller.ButtonMask.Trigger)) {
 			flyingSpeed = 0f;
-		} else if (lDevice.GetPress(SteamVR_Controller.ButtonMask.Touchpad)) {
+		} else if (lDevice.GetPress (SteamVR_Controller.ButtonMask.Touchpad)) {
 			flyingSpeed = 50f;
-		}else {
+		} else {
 			flyingSpeed = 15f;
 		}
 
@@ -85,22 +89,23 @@ public class PlanePilot : MonoBehaviour {
 
 
 //attempt at tilt- partially successful
-		float z = turnControl*5.0f; 
+		float z = turnControl * 5.0f; 
 		//Its in radians - this is the problem
-		float tiltAngle = transform.Find("Glider Model").rotation.z;
+		float tiltAngle = transform.Find ("Glider Model").rotation.z;
 		float tiltAngleInDegrees = Mathf.Rad2Deg (tiltAngle);
 		Debug.Log ("tilt angle: " + tiltAngleInDegrees);
 		if ((tiltAngleInDegrees >= 30f) || (tiltAngleInDegrees <= -30f)) {
 			transform.Find ("Cube (3)").Rotate (0f, 0f, 0f, Space.Self);
 		} else {
-				transform.Find ("Cube (3)").Rotate (0f, 0f, z, Space.Self);
+			transform.Find ("Cube (3)").Rotate (0f, 0f, z, Space.Self);
 		}
 
 		AdjustWindVolume ();
 
 	}
 
-	void AdjustWindVolume() {
+	void AdjustWindVolume ()
+	{
 		float factor = flyingSpeed / 50f;
 		float targetVolume = Mathf.Lerp (0, maxVolume, factor);
 		windSource.volume = Mathf.Lerp (windSource.volume, targetVolume, 0.1f);
