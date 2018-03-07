@@ -9,7 +9,7 @@ This VR project is inspired by Nausicaa - Valley of the Wind. It takes you on a 
 - UI or introduction/tutorial into world
 - Add tilt to the glider so when we turn it feels better - In Progress - Grace
 - Add new glider model to prefab - In Progress - Grace
-- World design/Figure out how to deal with boundaries
+- Figure out how to deal with boundaries OR create floating island world
 - Make the terrain feel low-poly: update material and texture, etc.
 - Tree_02 is not showing 
 - Add particle system to glider so flight trail is visible
