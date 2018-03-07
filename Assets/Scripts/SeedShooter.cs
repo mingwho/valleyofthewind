@@ -38,11 +38,14 @@ public class SeedShooter : MonoBehaviour {
 
 		float force = 10f;
 
-		if (pilot && useInertia) {
-			Vector3 heading = PlanePilot.Instance.transform.forward;
+		if (pilot) {
 			float speed = PlanePilot.Instance.flyingSpeed;
-
-			rb.AddForce (heading * speed, ForceMode.VelocityChange);
+			if (useInertia) {
+				Vector3 heading = PlanePilot.Instance.transform.forward;
+				rb.AddForce (heading * speed, ForceMode.VelocityChange);
+			} else {
+				force = Mathf.Max (20f, speed * 1.5f);
+			}
 		} else {
 			force = 20f;
 		}

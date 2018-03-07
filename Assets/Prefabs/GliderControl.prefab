@@ -790,13 +790,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7945fa62d88a2294a95af33e6f0059f1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  flyingSpeed: 15
   head: {fileID: 4756209008461188}
   leftHand: {fileID: 114058076518742630}
   rightHand: {fileID: 114313507526287114}
   initHeight: 1.3
+  flyingSpeed: 15
+  distanceToGround: 2
+  mask:
+    serializedVersion: 2
+    m_Bits: 16
   maxVolume: 1
-  tiltThreshold: 15
+  fadeSpeed: 0.02
+  maxTilt: 15
 --- !u!114 &114468616734289124
 MonoBehaviour:
   m_ObjectHideFlags: 1

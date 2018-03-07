@@ -19,7 +19,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 4035223692471634}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: seed2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -36,7 +36,7 @@ GameObject:
   - component: {fileID: 4298459128179754}
   - component: {fileID: 33747769168316158}
   - component: {fileID: 23295011641183872}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Icosphere.004
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -53,7 +53,7 @@ GameObject:
   - component: {fileID: 4174139125414564}
   - component: {fileID: 33277907473377064}
   - component: {fileID: 23100418706064776}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Icosphere
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -73,7 +73,7 @@ GameObject:
   - component: {fileID: 114289587175510268}
   - component: {fileID: 199859099689400378}
   - component: {fileID: 198991851963750308}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: SeedG
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -90,7 +90,7 @@ GameObject:
   - component: {fileID: 4947862188503928}
   - component: {fileID: 33920839884122350}
   - component: {fileID: 23570939205807058}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Icosphere.008
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -107,7 +107,7 @@ GameObject:
   - component: {fileID: 4350806593566166}
   - component: {fileID: 33873484404081694}
   - component: {fileID: 23607360032000762}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Icosphere.007
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -124,7 +124,7 @@ GameObject:
   - component: {fileID: 4436108851157240}
   - component: {fileID: 33780291302043606}
   - component: {fileID: 23910439366970472}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Icosphere.002
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -141,7 +141,7 @@ GameObject:
   - component: {fileID: 4144597792972116}
   - component: {fileID: 33143849705425414}
   - component: {fileID: 23792242292820288}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Icosphere.006
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -158,7 +158,7 @@ GameObject:
   - component: {fileID: 4588939458927306}
   - component: {fileID: 33687735369263048}
   - component: {fileID: 23264480086551248}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Icosphere.005
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -175,7 +175,7 @@ GameObject:
   - component: {fileID: 4723758655084744}
   - component: {fileID: 33286432661712498}
   - component: {fileID: 23809678248515684}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Icosphere.001
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -192,7 +192,7 @@ GameObject:
   - component: {fileID: 4667904352085128}
   - component: {fileID: 33393727070213232}
   - component: {fileID: 23459498950346702}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Icosphere.003
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -735,7 +735,7 @@ Rigidbody:
   m_IsKinematic: 0
   m_Interpolate: 0
   m_Constraints: 0
-  m_CollisionDetection: 0
+  m_CollisionDetection: 1
 --- !u!114 &114289587175510268
 MonoBehaviour:
   m_ObjectHideFlags: 1
