@@ -129,7 +129,7 @@ GameObject:
   - component: {fileID: 199847274668460998}
   - component: {fileID: 198696539450138342}
   m_Layer: 0
-  m_Name: GliderControl
+  m_Name: OldGliderControl
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

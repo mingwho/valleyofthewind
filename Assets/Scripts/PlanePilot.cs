@@ -78,14 +78,15 @@ public class PlanePilot : MonoBehaviour
 		}
 
 		//To change flying speed
+		float targetSpeed =  flyingSpeed;
 		if (lDevice.GetPress (SteamVR_Controller.ButtonMask.Trigger)) {
-			flyingSpeed = 0f;
+			targetSpeed = 0f;
 		} else if (lDevice.GetPress (SteamVR_Controller.ButtonMask.Touchpad)) {
-			flyingSpeed = 50f;
+			targetSpeed = 50f;
 		} else {
-			flyingSpeed = 15f;
+			targetSpeed = 15f;
 		}
-
+		flyingSpeed = Mathf.Lerp (flyingSpeed, targetSpeed, 0.02f);
 		RaycastTerrain ();
 		TiltGlider (turnControl);
 		AdjustWindVolume ();
@@ -127,22 +128,22 @@ public class PlanePilot : MonoBehaviour
 
 	// Tilt glider as we turn
 	void TiltGlider(float turn) {
-		float z = turn * 5.0f; 
+		float z = turn; 
 
 		// Find model - could be test or final version
 		Transform model = transform.Find("Glider Model");
 		if (!model) {
-			model = transform.Find ("Glider");
+			model = transform.Find ("Glider Model");
 		}
 
 		if (model) {
 			// Retrieve our local z rotation
-			float tiltAngle = model.localRotation.eulerAngles.z;
+			float tiltAngle = model.localRotation.eulerAngles.x;
 
 			// Tilt only if allowed
 			if (ShouldWeTilt(tiltAngle, z)) {
-				transform.Find ("Cube (3)").Rotate (0f, 0f, -z, Space.Self);
-				model.Rotate (0f, 0f, -z, Space.Self);
+				transform.Find ("Glider Model").Rotate (-z, 0f, 0f, Space.Self);
+				model.Rotate (-z, 0f, 0f, Space.Self);
 			} 
 		} else {
 			// Warn on missing model

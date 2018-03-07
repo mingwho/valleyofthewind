@@ -220,3 +220,6 @@ MonoBehaviour:
   - {fileID: 100000, guid: 4937c5937d05abf4eb4ef2fc5a662c96, type: 3}
   spawnParticle: {fileID: 1789248845512410, guid: 5fa766b4d4ce71c4fbf94a8f5f7c3e13,
     type: 2}
+  spawnSound: {fileID: 0}
+  seedSprite: {fileID: 0}
+  color: {r: 0, g: 0, b: 0, a: 0}
