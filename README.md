@@ -11,10 +11,10 @@ This VR project is inspired by Nausicaa - Valley of the Wind. It takes you on a 
 - Add new glider model to prefab - In Progress - Grace
 - World design/Figure out how to deal with boundaries
 - Make the terrain feel low-poly: update material and texture, etc.
-- Acceleration and Deceleration when we go up and down
 - Tree_02 is not showing 
 - Add particle system to glider so flight trail is visible
 - Playtest more
+- Acceleration and Deceleration when we go up and down
 
 #### DONE:
 - Combine all the work
