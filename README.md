@@ -2,6 +2,10 @@
 
 This VR project is inspired by Nausicaa - Valley of the Wind. It takes you on a gliding journey across mountains and valleys to plant seeds and create euphoric soundscape.
 
+Feel free to rotate, glide and plant forests with simple controls from your touchpads.
+
+<center><img src="https://raw.githubusercontent.com/mingwho/valleyofthewind/master/screenshots/20180327174341_1.jpg" alt="alt text" width="550" height="550"></center>
+
 #### IMPROVEMENT:
 - Use tree models of different colors, different scales or shapes
 - Design a system that allows interactions to add up to a meaningful gestalt
