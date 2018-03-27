@@ -2,6 +2,13 @@
 
 This VR project is inspired by Nausicaa - Valley of the Wind. It takes you on a gliding journey across mountains and valleys to plant seeds and create euphoric soundscape.
 
+#### IMPROVEMENT:
+- Use tree models of different colors, different scales or shapes
+- Design a system that allows interactions to add up to a meaningful gestalt
+- Present controlling information with sketches/ drawings
+- Use 3D seed models for coherency
+- Insert a hint of story at the beginning ( e.g. "you are a gardener on a floating island...")
+
 #### TODO:
 
 ALL DONE :D!!!!
